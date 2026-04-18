@@ -10,10 +10,10 @@ import { DataSource } from 'typeorm';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'nest-db.cb6wg4so2z8u.ap-south-1.rds.amazonaws.com',
+      host: 'nest-vpc.cb6wg4so2z8u.ap-south-1.rds.amazonaws.com',
       port: 3306,
       username: 'admin',
-      password: 'Zww9upGMXs890EIZglya',
+      password: 'Ho8Awy6MBUuT5gofqsEM',
       database: 'testdb',
       autoLoadEntities: true,
       synchronize: false,

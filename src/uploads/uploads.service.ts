@@ -10,15 +10,9 @@ export class UploadsService {
 
   constructor(private configService: ConfigService) {
     const region = this.configService.get<string>('AWS_REGION') || 'ap-south-1';
-    const accessKeyId = this.configService.get<string>('AWS_ACCESS_KEY_ID') || '';
-    const secretAccessKey = this.configService.get<string>('AWS_SECRET_ACCESS_KEY') || '';
-    
+
     this.s3Client = new S3Client({
       region,
-      credentials: {
-        accessKeyId,
-        secretAccessKey,
-      },
       // Disable automatic checksumming which can cause fetch failures in browsers
       requestChecksumCalculation: 'WHEN_REQUIRED',
       responseChecksumValidation: 'WHEN_REQUIRED',
@@ -33,10 +27,10 @@ export class UploadsService {
       Key: key,
     });
 
-    const url = await getSignedUrl(this.s3Client, command, { 
+    const url = await getSignedUrl(this.s3Client, command, {
       expiresIn: 3600,
     });
-    
+
     return { url, key };
   }
 

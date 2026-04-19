@@ -21,6 +21,7 @@ export class UploadsService {
   }
 
   async getPresignedUrl(sessionId: string, fileName: string, contentType: string) {
+    console.log({ fileName, contentType, sessionId }); // 👈 DEBUG
     const key = `original/${sessionId}/${Date.now()}-${fileName}`;
     const command = new PutObjectCommand({
       Bucket: this.bucketName,
